@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+<!--    Action lal pdf    -->
+    <record id="report_employee" model="ir.actions.report">
+        <field name="name">Employee Report</field>
+        <field name="model">sanabel.employee</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">resource_management.report_employee_template</field>
+        <field name="report_file">resource_management.report_employee_template</field>
+        <field name="binding_model_id" ref="model_sanabel_employee"/>
+        <field name="binding_type">report</field>
+    </record>
+
+<!--    Action lal xlsx    -->
+    <report
+        id="report_patient_card_xlx"
+        string="Patient Card Excel"
+        model="sanabel.employee"
+        report_type="xlsx"
+        name="resource_management.report_employee_xlsx"
+        file="resource_management.report_employee_xlsx"/>
+
+
+</odoo>

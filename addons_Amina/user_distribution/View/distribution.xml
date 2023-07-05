@@ -1,0 +1,272 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+
+    <record id="view_distribution_search" model="ir.ui.view">
+        <field name="name">sanabel.distribution.search</field>
+        <field name="model">sanabel.distribution</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="name"/>
+                <field name="benef_id"/>
+                <field name="product_ids"/>
+                <field name="dateTime"/>
+                <field name="distributor"/>
+            </search>
+        </field>
+    </record>
+
+
+    <record id="view_distribution_form" model="ir.ui.view">
+        <field name="name">sanabel.distribution.form</field>
+        <field name="model">sanabel.distribution</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <header attrs="{'invisible': [('id', '=', False)]}">
+                        <button name="button_waiting" string="Wait" class="oe_highlight" states="rejected"
+                                type="object"/>
+                        <button name="button_delivered" string="Deliver" class="oe_highlight" states="waiting"
+                                type="object"/>
+                        <button name="button_canceled" string="Cancel" class="oe_highlight" states="waiting"
+                                type="object"/>
+                        <button name="button_rejected" string="Reject" class="oe_highlight" states="canceled"
+                                type="object"/>
+                        <field name="state" widget="statusbar"/>
+                    </header>
+                    <separator/>
+                    <separator/>
+                    <group>
+                        <group>
+                            <field name="benf_type" widget="radio"/>
+                            <field name="benef_id" attrs="{'invisible':[('benf_type','=','benf_new')]}"
+                                   options="{'no_create': True, 'no_create_edit':True}"/>
+                            <field name="name" attrs="{'invisible':[('benf_type','!=','benf_new')]}"/>
+                            <field name="phone" attrs="{'readonly':[('benf_type','!=','benf_new')]}"/>
+                            <field name="type" widget="radio"/>
+                            <field name="product_ids"
+                                   attrs="{'invisible':[('type','!=','kind')],'required':[('type','=','kind')]}"
+                                   options="{'no_create': True, 'no_create_edit':True}"/>
+                            <field name="qte" attrs="{'invisible':[('type','!=','kind')]}"/>
+                            <field name="amount" attrs="{'invisible':[('type','!=','cash')]}"/>
+                        </group>
+                        <group>
+                            <field name="distributor" options="{'no_create': True, 'no_create_edit':True}"/>
+                            <field name="dateTime"/>
+                        </group>
+                    </group>
+
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+
+    <record id="view_benf_view" model="ir.ui.view">
+        <field name="name">sanabel.beneficiary.form</field>
+        <field name="model">sanabel.beneficiary</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group>
+                        <field name="name"/>
+                        <field name="nb_of_child"/>
+                        <field name="phone"/>
+                        <field name="nationality"/>
+                        <field name="region"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+
+    <record id="view_region_view" model="ir.ui.view">
+        <field name="name">sanabel.region.form</field>
+        <field name="model">sanabel.region</field>
+        <field name="arch" type="xml">
+            <form>
+                <field name="name"/>
+            </form>
+        </field>
+    </record>
+
+
+    <record id="view_distributer_view" model="ir.ui.view">
+        <field name="name">sanabel.distributer.form</field>
+        <field name="model">sanabel.distributer</field>
+        <field name="arch" type="xml">
+            <form>
+                <field name="name"/>
+            </form>
+        </field>
+    </record>
+
+
+    <record id="view_product_view" model="ir.ui.view">
+        <field name="name">sanabel.product.form</field>
+        <field name="model">sanabel.product</field>
+        <field name="arch" type="xml">
+            <form>
+                <field name="name"/>
+            </form>
+        </field>
+    </record>
+
+
+    <record id="view_product_view" model="ir.ui.view">
+        <field name="name">sanabel.product.form</field>
+        <field name="model">sanabel.product</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="name"/>
+            </tree>
+        </field>
+    </record>
+
+
+    <record id="view_distributer_tree" model="ir.ui.view">
+        <field name="name">sanabel.distributer.tree</field>
+        <field name="model">sanabel.distributer</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="name"/>
+            </tree>
+        </field>
+    </record>
+
+
+    <record id="view_region_tree" model="ir.ui.view">
+        <field name="name">sanabel.region.tree</field>
+        <field name="model">sanabel.region</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="name"/>
+            </tree>
+        </field>
+    </record>
+
+
+    <record id="view_benf_tree" model="ir.ui.view">
+        <field name="name">sanabel.beneficiary.tree</field>
+        <field name="model">sanabel.beneficiary</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="name"/>
+                <field name="nb_of_child"/>
+                <field name="phone"/>
+                <field name="nationality"/>
+                <field name="region"/>
+            </tree>
+        </field>
+    </record>
+
+
+    <record id="view_distribution_tree" model="ir.ui.view">
+        <field name="name">sanabel.distribution.tree</field>
+        <field name="model">sanabel.distribution</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="name"/>
+                <field name="benef_id"/>
+                <field name="distributor"/>
+                <field name="product_ids"/>
+                <field name="dateTime"/>
+                <field name="state"/>
+            </tree>
+        </field>
+    </record>
+
+
+    <record id="all_regions" model="ir.actions.act_window">
+        <field name="name">All Regions</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">sanabel.region</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <record id="all_products" model="ir.actions.act_window">
+        <field name="name">All Products</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">sanabel.product</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <record id="all_distributers" model="ir.actions.act_window">
+        <field name="name">All Distributers</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">sanabel.distributer</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <record id="all_benf" model="ir.actions.act_window">
+        <field name="name">All Beneficiaries</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">sanabel.beneficiary</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <record id="all_distr" model="ir.actions.act_window">
+        <field name="name">All Distributions</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">sanabel.distribution</field>
+        <field name="view_mode">tree,form,search</field>
+    </record>
+
+
+    <record id="waiting_distr" model="ir.actions.act_window">
+        <field name="name">Waiting Distributions</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">sanabel.distribution</field>
+        <field name="domain">[('state','=','waiting')]</field>
+        <field name="view_mode">tree</field>
+    </record>
+
+    <record id="delivered_canceled_distr" model="ir.actions.act_window">
+        <field name="name">Delivered and Canceled Distributions</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">sanabel.distribution</field>
+        <field name="domain">['|',('state','=','delivered'),('state','=','canceled')]</field>
+        <field name="view_mode">tree</field>
+    </record>
+
+
+    <menuitem id="root_menuitem"
+              name="Distribution"/>
+
+    <menuitem id="root1_menuitem"
+              name="Products"
+              parent="root_menuitem"
+              action="all_products"/>
+
+    <menuitem id="root2_menuitem"
+              name="Regions"
+              parent="root_menuitem"
+              action="all_regions"/>
+
+    <menuitem id="root3_menuitem"
+              name="Distributers"
+              parent="root_menuitem"
+              action="all_distributers"/>
+
+    <menuitem id="root4_menuitem"
+              name="Benefecaries"
+              parent="root_menuitem"
+              action="all_benf"/>
+
+
+    <menuitem id="all_distr_menuitem"
+              name="All"
+              action="all_distr"
+              parent="root_menuitem"/>
+
+    <menuitem id="waiting_distr_menuitem"
+              name="Waiting"
+              action="waiting_distr"
+              parent="root_menuitem"/>
+
+    <menuitem id="delivered_canceled_distr_menuitem"
+              name="Delivered/Canceled"
+              action="delivered_canceled_distr"
+              parent="root_menuitem"/>
+
+</odoo>

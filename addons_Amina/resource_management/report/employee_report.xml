@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <template id="report_employee_template">
+        <t t-call="web.html_container">
+            <t t-foreach="docs" t-as="o">
+                <t t-call="web.external_layout">
+                    <div class="page">
+                        <div>
+                            <div style="display: inline-block; margin-right: 200px;">
+                                <strong>First Name: </strong>
+                                <span t-field="o.name"/>
+                                <br/>
+                                <strong>Last Name: </strong>
+                                <span t-field="o.last_name"/>
+                                <br/>
+                                <strong>Age: </strong>
+                                <span t-field="o.age"/>
+                                <br/>
+                                <strong>Currency: </strong>
+                                <span t-field="o.currency_id"/>
+                                <br/>
+                                <strong>Salary: </strong>
+                                <span t-field="o.salary"/>
+                            </div>
+                            <div style="display: inline-block;">
+                                <strong>Type of Work: </strong>
+                                <span t-field="o.type_work"/>
+                                <br/>
+                                <strong>Address: </strong>
+                                <span t-field="o.address"/>
+                                <br/>
+                                <strong>Region: </strong>
+                                <span t-field="o.region"/>
+                                <br/>
+                                <strong>Nationality:</strong>
+                                <span t-field="o.nationality"/>
+                                <br/>
+                                <strong>Manager:</strong>
+                                <span t-field="o.manager"/>
+                            </div>
+                        </div>
+                        <br/>
+                        <br/>
+                        <br/>
+
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th>New Benefeciary</th>
+                                    <th>Old Benefeciary</th>
+                                    <th>Products</th>
+                                    <th>Amount</th>
+                                    <th>Time</th>
+                                    <th>Status</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <t t-set="distributions" t-value="o.mapped('distribution')"/>
+                                <tr t-foreach="distributions" t-as="dist">
+                                    <td>
+                                        <span t-field="dist.name"/>
+                                    </td>
+                                    <td>
+                                        <span t-field="dist.benef_id"/>
+                                    </td>
+                                    <td>
+                                        <span t-field="dist.product_ids"/>
+                                    </td>
+                                    <td>
+                                        <span t-field="dist.amount"/>
+                                    </td>
+                                    <td>
+                                        <span t-field="dist.dateTime"/>
+                                    </td>
+                                    <td>
+                                        <span t-field="dist.state"/>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </t>
+            </t>
+        </t>
+    </template>
+</odoo>

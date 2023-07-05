@@ -1,0 +1,6 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+user_distribution.access_sanabel_beneficiary,access_sanabel_beneficiary,user_distribution.model_sanabel_beneficiary,base.group_user,1,1,1,1
+user_distribution.access_sanabel_distributer,access_sanabel_distributer,user_distribution.model_sanabel_distributer,base.group_user,1,1,1,1
+user_distribution.access_sanabel_product,access_sanabel_product,user_distribution.model_sanabel_product,base.group_user,1,1,1,1
+user_distribution.access_sanabel_region,access_sanabel_region,user_distribution.model_sanabel_region,base.group_user,1,1,1,1
+user_distribution.access_sanabel_distribution,access_sanabel_distribution,user_distribution.model_sanabel_distribution,base.group_user,1,1,1,1

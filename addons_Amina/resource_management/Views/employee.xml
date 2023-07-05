@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+
+    <record id="view_employee_form" model="ir.ui.view">
+        <field name="name">sanabel.employee.form</field>
+        <field name="model">sanabel.employee</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+
+                    <group>
+                        <group>
+                            <field name="name"/>
+                            <field name="last_name"/>
+                            <field name="age"/>
+                            <field name="currency_id"/>
+                            <field name="salary"/>
+                        </group>
+                        <group>
+                            <field name="type_work"/>
+                            <field name="address"/>
+                            <field name="region"/>
+                            <field name="nationality"/>
+                            <field name="manager"/>
+                        </group>
+                        <separator/>
+
+                        <notebook>
+                            <page string="Filtered Distribution">
+                                <separator/>
+
+                                <group>
+                                    <field name="distribution"/>
+                                </group>
+                            </page>
+                        </notebook>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+
+    <record id="view_inherited_distribution" model="ir.ui.view">
+        <field name="name">Distribution</field>
+        <field name="model">sanabel.distribution</field>
+        <field name="inherit_id" ref="user_distribution.view_distribution_form"></field>
+        <field name="arch" type="xml">
+            <field name="distributor" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </field>
+
+            <field name="distributor" position="after">
+                <field name="employee_id"/>
+            </field>
+        </field>
+    </record>
+
+
+    <record id="view_employee_tree" model="ir.ui.view">
+        <field name="name">sanabel.employee.tree</field>
+        <field name="model">sanabel.employee</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="name"/>
+                <field name="name"/>
+                <field name="last_name"/>
+                <field name="age"/>
+                <field name="type_work"/>
+                <field name="address"/>
+                <field name="name" ref="user_distribution.view_region_view"/>
+                <field name="nationality"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="all_employee" model="ir.actions.act_window">
+        <field name="name">All Employees</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">sanabel.employee</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <record id="all_Distribution" model="ir.actions.act_window">
+        <field name="name">All Distributions</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">sanabel.distribution</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <menuitem id="root_menuitem_resource_management"
+              name="Resource Management"/>
+
+    <menuitem id="employee_menuitem"
+              name="Employee"
+              parent="root_menuitem_resource_management"
+              action="all_employee"/>
+
+    <menuitem id="distribution_menuitem"
+              name="Distribution"
+              parent="root_menuitem_resource_management"
+              action="all_Distribution"/>
+
+
+
+</odoo>
